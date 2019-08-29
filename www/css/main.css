@@ -1,0 +1,41 @@
+* { 
+    padding: 0;
+    margin: 0;
+    font-family: 'Red Hat Text', sans-serif;
+}
+
+a, a:visited, a:hover, a:active{
+    text-decoration: none !important;
+}
+
+#app_body {
+    margin-bottom: 140px;
+}
+
+#app_body h1 {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+.app_panel_fit {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    min-height: 70px;
+    background-color: white;
+    box-shadow: -3px 3px 5px #eeeeee;
+}
+
+.app_panel_fit a {
+    color: white;
+}
+
+.panel1 {
+    background: rgb(3,218,198);
+    background: linear-gradient(0deg, rgba(3,218,198,1) 0%, rgba(3,218,163,1) 83%); 
+}
+
+.panel2 {
+    background: rgb(255,201,10);
+    background: linear-gradient(0deg, rgba(255,201,10,1) 0%, rgba(255,223,10,1) 83%);
+}
