@@ -1,11 +1,84 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang='en'>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
+        <!-- TERRENE APP PROGRAMMED BY JOSEPH AQUIARE 2019/2020 -->
+        <!-- Meta Information (TBD) -->
+        <title>Terrene - Home</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="An app for managing back pain.">
+        <meta name="keywords"    content="Phonegap, back pain, health, fitness">
+        <meta name="author"      content="Terrene Team">
+        
+        <!-- Mobile Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+
+        <!-- Style Sheets -->
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/navigation.css">
+
+        <!-- Page-Specific Style Sheets -->
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+
     </head>
+
     <body>
-        <script type="text/javascript" src="cordova.js"></script>
+        <div id="app_body">
+            <!-- HOME HEADER-->
+            <div id="app_home_header" class="animated fadeIn">
+                <div id="app_home_header_welcome" class="animated fadeIn delay-1s">
+                    Welcome back, <label id="header_name">Client</label>
+                </div>
+                <div id="app_home_header_info_box" class="animated fadeIn delay-1s">
+                    <div id="client_icon" class="icon animated rollIn delay-1s"></div>
+                    <div id="client_info">
+                        <label id="client_name">Client</label>
+                        <br>
+                        <label id="client_level">Level 1</label>
+                    </div>
+                </div>
+                <div id="app_home_header_level_bar">
+                    <canvas id="client_level_bar" height="20px">
+                        This platform does not support HTML5 Canvas. 
+                    </canvas>
+                </div>
+            </div>
+            <!-- HOME BODY -->
+            <div class="app_panel_fit panel1 animated fadeInLeft">
+                <a href="...">
+                    <span class="hyperspan"></span>
+                    <h1 class="animated fadeIn delay-1s">
+                        Get Started
+                    </h1>
+                </a>
+            </div>
+            <div class="app_panel_fit panel2 animated fadeInRight">
+                <a href="...">
+                    <span class="hyperspan"></span>
+                    <h1 class="animated fadeIn delay-1s">
+                        Help
+                    </h1>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Navigation Injection Host -->
+        <div id="navigation_insert"></div>
+
+        <!-- Scripts & External Resources-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <script>
+            $(function(){
+                $("#navigation_insert").load("navigation.html");
+            });
+
+            $(document).ready(function(){
+                $(this).scrollTop(0);
+            });
+        </script>
     </body>
 </html>
