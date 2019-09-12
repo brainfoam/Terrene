@@ -14,8 +14,8 @@
     z-index: 999;
 }
 
-#app_body {
-    margin-top: 216px;
+#home_spacing {
+    min-height: 200px;
 }
 
 #app_home_header_welcome {

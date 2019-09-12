@@ -1,40 +1,38 @@
-<!-- Navigation Bar -->
-<div id="app_navbar_container">
-    <ul id="app_navbar">
-        <!-- Home -->
-        <a href="index.html" class="nav_link">
-            <li class="nav_item"> 
-                <img class="nav_icon" src="images/icons/home.svg"></img>
-                <label class="nav_name">Home</label>
-            </li>
+<html>
+    <div id="app_navbar_container">
+        <ul id="app_navbar">
+            <a class="nav_link">
+                <li id="nav_home" class="nav_item"> 
+                    <img class="nav_icon" src="images/icons/home.svg"></img>
+                    <label class="nav_name">Home</label>
+                </li>
+            </a>
+            <a class="nav_link">
+                <li id="nav_game" class="nav_item">
+                    <img class="nav_icon" src="images/icons/world.svg"></img>
+                    <label class="nav_name">Game</label>
+                </li>
+            </a>
+            <a class="nav_link">
+                <li id="nav_health" class="nav_item">
+                    <img class="nav_icon" src="images/icons/heart.svg"></img>
+                    <label class="nav_name">Health</label>
+                </li>
+            </a>
+            <a class="nav_link">
+                <li id="nav_tracking" class="nav_item">
+                    <img class="nav_icon" src="images/icons/tracking.svg"></img>
+                    <label class="nav_name">Stats</label>
+                </li>
+            </a>
+        </ul>
+        <a href="...">
+            <div id="nav_emergency_button" class="animated fadeInUp delay-1s">
+            !
+            </div>
         </a>
-
-        <!-- Game -->
-        <a href="game.html" class="nav_link">
-            <li class="nav_item">
-                <img class="nav_icon" src="images/icons/world.svg"></img>
-                <label class="nav_name">Game</label>
-            </li>
-        </a>
-        <!-- Health -->
-        <a href="...health" class="nav_link">
-            <li class="nav_item">
-                <img class="nav_icon" src="images/icons/heart.svg"></img>
-                <label class="nav_name">Health</label>
-            </li>
-        </a>
-        <!-- Tracking -->
-        <a href="...tracking" class="nav_link">
-            <li class="nav_item">
-                <img class="nav_icon" src="images/icons/tracking.svg"></img>
-                <label class="nav_name">Stats</label>
-            </li>
-        </a>
-    </ul>
-    <a href="...">
-        <div id="nav_emergency_button" class="animated fadeInUp delay-1s">
-        !
-        </div>
-    </a>
-</div>
-
+    </div>
+    <script>
+        console.log('%c Navigation injected.', 'color: #ff22cc;');
+    </script>
+</html>

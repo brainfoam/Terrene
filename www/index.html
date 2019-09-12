@@ -22,78 +22,32 @@
 
         <!-- Page-Specific Style Sheets -->
         <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="css/game.css">
 
     </head>
 
     <body>
-        <div id="app_body">
-            <!-- HOME HEADER-->
-            <div id="app_home_header" class="animated fadeIn">
-                <div id="app_home_header_welcome" class="animated fadeIn delay-1s">
-                    Welcome back, <label id="header_name">Client</label>
-                </div>
-                <div id="app_home_header_info_box" class="animated fadeIn delay-1s">
-                    <div id="client_icon" class="icon animated rollIn delay-1s"></div>
-                    <div id="client_info">
-                        <label id="client_name">Client</label>
-                        <br>
-                        <label id="client_level">Level 1</label>
-                    </div>
-                </div>
-                <div id="app_home_header_level_bar">
-                    <canvas id="client_level_bar" height="20px">
-                        This platform does not support HTML5 Canvas. 
-                    </canvas>
-                </div>
-            </div>
-            <!-- HOME BODY -->
-            <div class="app_panel_fit panel1 animated fadeInLeft">
-                <a href="...">
-                    <span class="hyperspan"></span>
-                    <h1 class="animated fadeIn delay-1s">
-                        Self Evalutation
-                    </h1>
-                </a>
-            </div>
-            <div class="app_panel_fit panel1 animated fadeInRight">
-                <a href="...">
-                    <span class="hyperspan"></span>
-                    <h1 class="animated fadeIn delay-1s">
-                        External Care
-                    </h1>
-                </a>
-            </div>
-            <div class="app_panel_fit panel1 animated fadeInLeft">
-                <a href="...">
-                    <span class="hyperspan"></span>
-                    <h1 class="animated fadeIn delay-1s">
-                        Start a Quest
-                    </h1>
-                </a>
-            </div>
-            <div class="app_panel_fit panel1 animated fadeInRight">
-                <a href="...">
-                    <span class="hyperspan"></span>
-                    <h1 class="animated fadeIn delay-1s">
-                        Simple Stretch
-                    </h1>
-                </a>
-            </div>
-        </div>
 
-        <!-- Navigation Injection Host -->
+        <!-- Injection Hosts -->
+        <div id="app_body"></div>
         <div id="navigation_insert"></div>
 
-        <!-- Scripts & External Resources-->
+        <!-- Scripts & External Resources -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
         <script>
+            console.log('%c App loaded.', 'color: red; font-weight: bold;');
+
             $(function(){
+                $("#app_body").load("pages/home.html");
                 $("#navigation_insert").load("navigation.html");
             });
 
             $(document).ready(function(){
                 $(this).scrollTop(0);
+                var navigation_script = document.createElement('script');
+                navigation_script.setAttribute('src','scripts/navigation.js');
+                document.body.appendChild(navigation_script);
             });
         </script>
     </body>
