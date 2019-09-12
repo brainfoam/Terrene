@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <!-- TERRENE APP PROGRAMMED BY JOSEPH AQUIARE 2019/2020 -->
+        <!-- Meta Information (TBD) -->
+        <title>Terrene - Home</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="An app for managing back pain.">
+        <meta name="keywords"    content="Phonegap, back pain, health, fitness">
+        <meta name="author"      content="Terrene Team">
+        
+        <!-- Mobile Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+
+        <!-- Style Sheets -->
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/navigation.css">
+
+        <!-- Page-Specific Style Sheets -->
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    </head>
+
+    <body>
+        <div id="app_body">
+
+        </div>
+
+        <!-- Navigation Injection Host -->
+        <div id="navigation_insert"></div>
+
+        <!-- Scripts & External Resources-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <script>
+            $(function(){
+                $("#navigation_insert").load("navigation.html");
+            });
+
+            $(document).ready(function(){
+                $(this).scrollTop(0);
+            });
+        </script>
+    </body>
+</html>
