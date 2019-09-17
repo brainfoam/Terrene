@@ -1,8 +1,8 @@
 <html>
     <div id="home_spacing"></div>
-    <div id="app_home_header" class="animated fadeIn">
+    <div id="app_home_header" class="animated fadeInDown">
         <div id="app_home_header_welcome" class="animated fadeIn delay-1s">
-            Welcome back, <label id="header_name">Client</label>
+            Welcome back, <label id="header_name">John</label>!
         </div>
         <div id="app_home_header_info_box" class="animated fadeIn delay-1s">
             <div id="client_icon" class="icon animated rollIn delay-1s"></div>
@@ -10,13 +10,23 @@
                 <label id="client_name">Client</label>
                 <br />
                 <label id="client_level">Level 1</label>
+                <br />
+                <label id="client_level">60/100 exp</label>
+            </div>
+            <div id="app_home_header_level_bar">
+                <canvas id="client_level_bar" width="240px" height="38px">
+                    This platform does not support HTML5 Canvas. 
+                </canvas>
             </div>
         </div>
-        <div id="app_home_header_level_bar">
-            <canvas id="client_level_bar" height="20px">
-                This platform does not support HTML5 Canvas. 
-            </canvas>
-        </div>
+    </div>
+    <div class="app_panel_fit panel1 animated fadeInRight">
+        <a href="...">
+            <span class="hyperspan"></span>
+            <h1 class="animated fadeIn delay-1s">
+                    Daily Survey <i class="fas fa-check"></i>
+            </h1>
+        </a>
     </div>
     <div class="app_panel_fit panel1 animated fadeInLeft">
         <a href="...">
@@ -38,19 +48,99 @@
         <a href="...">
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
-                Start a Quest
-            </h1>
-        </a>
-    </div>
-    <div class="app_panel_fit panel1 animated fadeInRight">
-        <a href="...">
-            <span class="hyperspan"></span>
-            <h1 class="animated fadeIn delay-1s">
                 Simple Stretch
             </h1>
         </a>
     </div>
+    
     <script>
-        console.log('%c Home page injected.', 'color: #ff22cc;');
+        var GL_CANVAS_H = 120;
+        var GL_CANVAS_W = 999;
+        let canvas, ctx;
+        let lvl_bar_width = 0;
+        let timer = 0;
+
+        function setUpCanvas() {
+            canvas        = document.querySelector("#client_level_bar");
+            ctx           = canvas.getContext("2d");
+            canvas.height = GL_CANVAS_H;
+            canvas.width  = GL_CANVAS_W;
+            window.requestAnimationFrame(update);
+        }
+
+        function update() {
+            setTimeout(function() {
+                drawLevelBar();
+                window.requestAnimationFrame(update);
+            }, 1000 / 60)
+        }
+
+        function lerp(v0, v1, t) {
+            return(1-t)*v0+t*v1;
+        }
+
+        function drawLevelBar() {
+            timer++;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let lb_width   = 200;
+            let lb_start_x = 10;
+            let lb_start_y = 25;
+            let lb_radius  = 10;
+            let lb_inner_p = 5;
+            let lb_new_r   = lb_radius - lb_inner_p;
+            let c          = 2 * Math.PI;
+            let exp_max    = 100;
+            let exp_curr   = 60;
+            let exp_p      = exp_curr / exp_max;
+            let lb_outer_c = "#ffffff";
+            let lb_inner_c = "#6200EE"
+
+            ctx.fillStyle = lb_outer_c;
+
+            if(timer > (60 * 20))
+            {
+                lvl_bar_width = lerp(lvl_bar_width, exp_p, .001);
+            }
+
+            //Draw level bar end-cap (left)
+            ctx.beginPath();
+            ctx.arc(lb_start_x, lb_start_y, lb_radius, 0, c);
+            ctx.fill();
+            ctx.closePath();
+
+            //Draw level bar end-cap (right)
+            ctx.beginPath();
+            ctx.arc(lb_start_x + lb_width, lb_start_y, lb_radius, 0, c);
+            ctx.fill();
+            ctx.closePath();
+
+            //Draw level bar filler
+            ctx.fillRect(lb_start_x, lb_start_y - lb_radius, lb_width, lb_radius * 2);
+
+            ctx.fillStyle = lb_inner_c;
+
+            //Draw level bar end-cap (left)
+            ctx.beginPath();
+            ctx.arc(lb_start_x, lb_start_y, lb_new_r, 0, c);
+            ctx.fill();
+            ctx.closePath();
+
+            //Draw level bar end-cap (right)
+            ctx.beginPath();
+            ctx.arc(lb_start_x + (lb_width * lvl_bar_width), lb_start_y, lb_new_r, 0, c);
+            ctx.fill();
+            ctx.closePath();
+
+            //Draw level bar filler
+            ctx.fillRect(lb_start_x, lb_start_y - lb_new_r, lb_width * lvl_bar_width, lb_new_r * 2);
+            window.requestAnimationFrame(drawLevelBar);
+        }
+        
+        setUpCanvas();
+    </script>
+
+    <script>
+        console.log('%c 👉 Home page injected.', 'color: #ff22cc;');
     </script>
 </html>

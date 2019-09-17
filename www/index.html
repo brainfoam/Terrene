@@ -14,6 +14,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/abec465222.js"></script>
 
         <!-- Style Sheets -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -36,13 +37,18 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
         <script>
-            console.log('%c App loaded.', 'color: red; font-weight: bold;');
+            //Prepare app loading
+            console.log('%c ✔️ App ready.',  'color: red; font-weight: bold;');
 
+            //Load app body & navigation injection through JQuery
             $(function(){
                 $("#app_body").load("pages/home.html");
                 $("#navigation_insert").load("pages/navigation.html");
             });
 
+            console.log('%c ✔️ App loaded.' , 'color: red; font-weight: bold;');
+
+            //Keep the document scrolled up & append navigation script
             $(document).ready(function(){
                 $(this).scrollTop(0);
                 var navigation_script = document.createElement('script');

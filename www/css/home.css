@@ -1,10 +1,10 @@
 #app_home_header {
     color: white;
-    height: 160px;
+    height: 155px;
     padding: 20px;
     background: rgb(98,0,238);
     background: linear-gradient(0deg, rgba(98,0,238,1) 0%, rgba(136,0,238,1) 83%); 
-    background-image: url(../images/home/header_image.jpg);
+    /* background-image: url(../images/home/header_image.jpg); */
     background-size: 100%;
     box-shadow: 0px 0px 20px white;
     position: fixed;
@@ -12,6 +12,7 @@
     left: 0px;
     width: 100%;
     z-index: 999;
+    border-bottom-left-radius: 60px;
 }
 
 #home_spacing {
@@ -34,7 +35,7 @@
 }
 
 #client_icon {
-    background-image: url("../images/home/user_icon.jpg");
+    background-image: url("../images/home/user_icon_john.jpg");
     background-size: 100px;
     width: 100px;
     height: 100px;
@@ -47,4 +48,11 @@
     height: 100px;
     position: fixed;
     left: 130px;
+}
+
+#client_level_bar
+{
+    position: fixed;
+    margin-top: 55px;
+    margin-left: 10px;
 }
