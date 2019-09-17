@@ -35,8 +35,12 @@
 
         <!-- Scripts & External Resources -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+        <script src="scripts/utilities.js"></script>
+        
         <script>
+            //Initialization variables
+            var APP_homeinit;
+
             //Prepare app loading
             console.log('%c ✔️ App ready.',  'color: red; font-weight: bold;');
 
@@ -46,14 +50,10 @@
                 $("#navigation_insert").load("pages/navigation.html");
             });
 
-            console.log('%c ✔️ App loaded.' , 'color: red; font-weight: bold;');
-
             //Keep the document scrolled up & append navigation script
             $(document).ready(function(){
+                console.log('%c ✔️ App loaded.' , 'color: red; font-weight: bold;');
                 $(this).scrollTop(0);
-                var navigation_script = document.createElement('script');
-                navigation_script.setAttribute('src','scripts/navigation.js');
-                document.body.appendChild(navigation_script);
             });
         </script>
     </body>

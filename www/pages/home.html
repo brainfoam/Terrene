@@ -54,93 +54,92 @@
     </div>
     
     <script>
-        var GL_CANVAS_H = 120;
-        var GL_CANVAS_W = 999;
-        let canvas, ctx;
-        let lvl_bar_width = 0;
-        let timer = 0;
+        (APP_homeinit = function(){
 
-        function setUpCanvas() {
-            canvas        = document.querySelector("#client_level_bar");
-            ctx           = canvas.getContext("2d");
-            canvas.height = GL_CANVAS_H;
-            canvas.width  = GL_CANVAS_W;
-            window.requestAnimationFrame(update);
-        }
+            var GL_CANVAS_H = 120;
+            var GL_CANVAS_W = 999;
+            let canvas, ctx;
+            let lvl_bar_width = 0;
+            let timer = 0;
 
-        function update() {
-            setTimeout(function() {
-                drawLevelBar();
+            function setUpCanvas() {
+                
+                loaded_home = true;
+                canvas        = document.querySelector("#client_level_bar");
+                ctx           = canvas.getContext("2d");
+                canvas.height = GL_CANVAS_H;
+                canvas.width  = GL_CANVAS_W;
                 window.requestAnimationFrame(update);
-            }, 1000 / 60)
-        }
-
-        function lerp(v0, v1, t) {
-            return(1-t)*v0+t*v1;
-        }
-
-        function drawLevelBar() {
-            timer++;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            let lb_width   = 200;
-            let lb_start_x = 10;
-            let lb_start_y = 25;
-            let lb_radius  = 10;
-            let lb_inner_p = 5;
-            let lb_new_r   = lb_radius - lb_inner_p;
-            let c          = 2 * Math.PI;
-            let exp_max    = 100;
-            let exp_curr   = 60;
-            let exp_p      = exp_curr / exp_max;
-            let lb_outer_c = "#ffffff";
-            let lb_inner_c = "#6200EE"
-
-            ctx.fillStyle = lb_outer_c;
-
-            if(timer > (60 * 20))
-            {
-                lvl_bar_width = lerp(lvl_bar_width, exp_p, .001);
             }
 
-            //Draw level bar end-cap (left)
-            ctx.beginPath();
-            ctx.arc(lb_start_x, lb_start_y, lb_radius, 0, c);
-            ctx.fill();
-            ctx.closePath();
+            function update() {
+                setTimeout(function() {
+                    drawLevelBar();
+                    window.requestAnimationFrame(update);
+                }, 1000 / 60)
+            }
 
-            //Draw level bar end-cap (right)
-            ctx.beginPath();
-            ctx.arc(lb_start_x + lb_width, lb_start_y, lb_radius, 0, c);
-            ctx.fill();
-            ctx.closePath();
+            function drawLevelBar() {
+                timer++;
 
-            //Draw level bar filler
-            ctx.fillRect(lb_start_x, lb_start_y - lb_radius, lb_width, lb_radius * 2);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = lb_inner_c;
+                let level_bar_width         = 200;
+                let level_bar_start_x       = 10;
+                let level_bar_start_y       = 25;
+                let level_bar_radius        = 10;
+                let level_bar_inner_padding = 5;
+                let level_bar_new_radius    = level_bar_radius - level_bar_inner_padding;
+                let c                       = 2 * Math.PI;
+                let exp_max                 = 100;
+                let exp_current             = 60;
+                let exp_p                   = exp_current / exp_max;
+                let level_bar_outer_color   = "#ffffff";
+                let level_bar_inner_color   = "#6200EE"
 
-            //Draw level bar end-cap (left)
-            ctx.beginPath();
-            ctx.arc(lb_start_x, lb_start_y, lb_new_r, 0, c);
-            ctx.fill();
-            ctx.closePath();
+                ctx.fillStyle = level_bar_outer_color;
 
-            //Draw level bar end-cap (right)
-            ctx.beginPath();
-            ctx.arc(lb_start_x + (lb_width * lvl_bar_width), lb_start_y, lb_new_r, 0, c);
-            ctx.fill();
-            ctx.closePath();
+                if(timer > (60 * 20))
+                {
+                    lvl_bar_width = lerp(lvl_bar_width, exp_p, .001);
+                }
 
-            //Draw level bar filler
-            ctx.fillRect(lb_start_x, lb_start_y - lb_new_r, lb_width * lvl_bar_width, lb_new_r * 2);
-            window.requestAnimationFrame(drawLevelBar);
-        }
-        
-        setUpCanvas();
-    </script>
+                //Draw level bar end-cap (left)
+                ctx.beginPath();
+                ctx.arc(level_bar_start_x, level_bar_start_y, level_bar_radius, 0, c);
+                ctx.fill();
+                ctx.closePath();
 
-    <script>
+                //Draw level bar end-cap (right)
+                ctx.beginPath();
+                ctx.arc(level_bar_start_x + level_bar_width, level_bar_start_y, level_bar_radius, 0, c);
+                ctx.fill();
+                ctx.closePath();
+
+                //Draw level bar filler
+                ctx.fillRect(level_bar_start_x, level_bar_start_y - level_bar_radius, level_bar_width, level_bar_radius * 2);
+
+                ctx.fillStyle = level_bar_inner_color;
+
+                //Draw level bar end-cap (left)
+                ctx.beginPath();
+                ctx.arc(level_bar_start_x, level_bar_start_y, level_bar_new_radius, 0, c);
+                ctx.fill();
+                ctx.closePath();
+
+                //Draw level bar end-cap (right)
+                ctx.beginPath();
+                ctx.arc(level_bar_start_x + (level_bar_width * lvl_bar_width), level_bar_start_y, level_bar_new_radius, 0, c);
+                ctx.fill();
+                ctx.closePath();
+
+                //Draw level bar filler
+                ctx.fillRect(level_bar_start_x, level_bar_start_y - level_bar_new_radius, level_bar_width * lvl_bar_width, level_bar_new_radius * 2);
+                window.requestAnimationFrame(drawLevelBar);
+            }
+            setUpCanvas();
+        })();
+
         console.log('%c 👉 Home page injected.', 'color: #ff22cc;');
     </script>
 </html>
