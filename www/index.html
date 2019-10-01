@@ -14,6 +14,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/abec465222.js"></script>
 
         <!-- Style Sheets -->
@@ -40,6 +41,20 @@
         <script>
             //Initialization variables
             var APP_homeinit;
+            var C_APP  = 'color: red; font-weight: bold;',
+                C_LOAD = 'color: #ff22cc;',
+                C_CODE = 'color: #f2af2a;';
+
+            function app_log(text, param) {
+                let sym = '❌';
+                switch(param){
+                    case C_APP:  sym = '✔️'; break;
+                    case C_LOAD: sym = '👉'; break;
+                    case C_CODE: sym = '▶️'; break;
+                }
+                let log = "%c" + sym + " " + text;
+                console.log(log, param);
+            }
 
             //Prepare app loading
             console.log('%c ✔️ App ready.',  'color: red; font-weight: bold;');

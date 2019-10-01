@@ -1,9 +1,8 @@
 #app_home_header {
     color: white;
-    height: 155px;
+    height: 115px;
     padding: 20px;
-    background: rgb(98,0,238);
-    background: linear-gradient(0deg, rgba(98,0,238,1) 0%, rgba(136,0,238,1) 83%); 
+    background: linear-gradient(0deg, rgb(132, 44, 255) 0%, rgb(159, 33, 255) 83%); 
     /* background-image: url(../images/home/header_image.jpg); */
     background-size: 100%;
     box-shadow: 0px 0px 20px white;
@@ -12,11 +11,10 @@
     left: 0px;
     width: 100%;
     z-index: 999;
-    border-bottom-left-radius: 60px;
 }
 
 #home_spacing {
-    min-height: 200px;
+    min-height: 156px;
 }
 
 #app_home_header_welcome {
@@ -47,12 +45,10 @@
     color: white !important;
     height: 100px;
     position: fixed;
-    left: 130px;
 }
 
 #client_level_bar
 {
     position: fixed;
-    margin-top: 55px;
-    margin-left: 10px;
+    margin-top: 30px;
 }

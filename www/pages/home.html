@@ -5,10 +5,7 @@
             Welcome back, <label id="header_name">John</label>!
         </div>
         <div id="app_home_header_info_box" class="animated fadeIn delay-1s">
-            <div id="client_icon" class="icon animated rollIn delay-1s"></div>
             <div id="client_info">
-                <label id="client_name">Client</label>
-                <br />
                 <label id="client_level">Level 1</label>
                 <br />
                 <label id="client_level">60/100 exp</label>
@@ -61,6 +58,7 @@
             let canvas, ctx;
             let lvl_bar_width = 0;
             let timer = 0;
+            let ani_frame = undefined;
 
             function setUpCanvas() {
                 
@@ -69,13 +67,13 @@
                 ctx           = canvas.getContext("2d");
                 canvas.height = GL_CANVAS_H;
                 canvas.width  = GL_CANVAS_W;
-                window.requestAnimationFrame(update);
+                ani_frame = window.requestAnimationFrame(update);
             }
 
             function update() {
                 setTimeout(function() {
                     drawLevelBar();
-                    window.requestAnimationFrame(update);
+                    ani_frame = window.requestAnimationFrame(update);
                 }, 1000 / 60)
             }
 
@@ -95,7 +93,7 @@
                 let exp_current             = 60;
                 let exp_p                   = exp_current / exp_max;
                 let level_bar_outer_color   = "#ffffff";
-                let level_bar_inner_color   = "#6200EE"
+                let level_bar_inner_color   = "#842cff";
 
                 ctx.fillStyle = level_bar_outer_color;
 
@@ -135,11 +133,20 @@
 
                 //Draw level bar filler
                 ctx.fillRect(level_bar_start_x, level_bar_start_y - level_bar_new_radius, level_bar_width * lvl_bar_width, level_bar_new_radius * 2);
-                window.requestAnimationFrame(drawLevelBar);
+
+                if(Math.abs(lvl_bar_width - exp_p) > .01)
+                {
+                    ani_frame = window.requestAnimationFrame(drawLevelBar);
+                }
+                else
+                {
+                    app_log("Level bar animation complete.", C_CODE);
+                    window.cancelAnimationFrame(ani_frame);
+                } 
             }
             setUpCanvas();
         })();
 
-        console.log('%c 👉 Home page injected.', 'color: #ff22cc;');
+        console.log('%c 👉 Home page injected.', C_LOAD);
     </script>
 </html>

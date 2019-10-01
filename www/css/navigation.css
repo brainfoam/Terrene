@@ -15,8 +15,8 @@
 }
 
 #app_navbar a {
-    font-family: sans-serif;
-    font-size: .7em;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8em;
     text-decoration: none;
     color: black;
 }
@@ -39,7 +39,7 @@
 
 #nav_emergency_button {
     font-size: 2em;
-    font-weight: 900;
+    font-weight: 800;
     max-width: 1px;
     text-align: center;
     min-height: 40px;
@@ -48,7 +48,7 @@
     background-color: red;
     position: fixed !important;
     bottom: 90px !important;
-    right: 17px;
+    right: 18px;
     border-radius: 50%;
     color: white;
     padding: 5px;
