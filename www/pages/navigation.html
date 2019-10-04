@@ -22,12 +22,12 @@
             <a class="nav_link">
                 <li id="nav_tracking" class="nav_item">
                     <img class="nav_icon" src="images/icons/tracking.svg"></img>
-                    <label class="nav_name">Tracking</label>
+                    <label class="nav_name">Stats</label>
                 </li>
             </a>
         </ul>
-        <a href="...">
-            <div id="nav_emergency_button" class="animated fadeInUp delay-1s">
+        <a class="nav_link">
+            <div id="nav_emergency_button" class="nav_item animated fadeInUp delay-1s">
             !
             </div>
         </a>
@@ -37,11 +37,13 @@
         let nav_game = $("#nav_game");
         let nav_hlth = $("#nav_health");
         let nav_trck = $("#nav_tracking");
+        let nav_emer = $("#nav_emergency_button");
 
-        nav_home.click(function() { loadPage("home");     });
-        nav_game.click(function() { loadPage("game");     });
-        nav_hlth.click(function() { loadPage("health");   });
-        nav_trck.click(function() { loadPage("tracking"); });
+        nav_home.click(function() { loadPage("home");          });
+        nav_game.click(function() { loadPage("game");          });
+        nav_hlth.click(function() { loadPage("health");        });
+        nav_trck.click(function() { loadPage("tracking");      });
+        nav_emer.click(function() { loadPage("external_care"); });
 
         function clearAppBody() {
             document.querySelector("#app_body").innerHTML = "";
