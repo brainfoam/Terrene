@@ -1,35 +1,7 @@
-#app_home_header {
-    color: white;
-    height: 115px;
-    padding: 20px;
-    background: linear-gradient(0deg, rgb(132, 44, 255) 0%, rgb(159, 33, 255) 83%); 
-    /* background-image: url(../images/home/header_image.jpg); */
-    background-size: 100%;
-    box-shadow: 0px 0px 20px white;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 999;
-}
-
-#home_spacing {
-    min-height: 156px;
-}
-
-#app_home_header_welcome {
-    font-size: 1.5em;
-    color: white;
-}
- 
-#app_home_header_welcome label {
-    font-weight: 1000;
-    color: white;
-}
-
 #app_home_header_info_box {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 #client_icon {

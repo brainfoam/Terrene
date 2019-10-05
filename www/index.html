@@ -57,7 +57,7 @@
             }
 
             //Prepare app loading
-            console.log('%c ✔️ App ready.',  'color: red; font-weight: bold;');
+            app_log("App ready.", C_APP);
 
             //Load app body & navigation injection through JQuery
             $(function(){
@@ -67,7 +67,7 @@
 
             //Keep the document scrolled up & append navigation script
             $(document).ready(function(){
-                console.log('%c ✔️ App loaded.' , 'color: red; font-weight: bold;');
+                app_log("App loaded.", C_APP);
                 $(this).scrollTop(0);
             });
         </script>
