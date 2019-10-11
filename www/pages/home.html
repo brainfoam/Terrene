@@ -58,6 +58,7 @@
             let lvl_bar_width = 0;
             let timer         = 0;
             let ani_frame     = undefined;
+            let ani_complete  = false;
             let canvas, ctx;
 
             function setUpCanvas() {
@@ -135,15 +136,20 @@
                 //Draw level bar filler
                 ctx.fillRect(level_bar_start_x, level_bar_start_y - level_bar_new_radius, level_bar_width * lvl_bar_width, level_bar_new_radius * 2);
 
-                if(Math.abs(lvl_bar_width - exp_p) > .01)
+                if(Math.abs(lvl_bar_width - exp_p) > .001)
                 {
                     ani_frame = window.requestAnimationFrame(drawLevelBar);
                 }
                 else
                 {
-                    app_log("Level bar animation complete.", C_CODE);
-                    window.cancelAnimationFrame(ani_frame);
-                } 
+                    if(!ani_complete)
+                    {
+                        ani_complete = true;
+                        lvl_bar_width = exp_p;
+                        app_log("Level bar animation complete.", C_CODE);
+                        window.cancelAnimationFrame(ani_frame);
+                    }
+                }
             }
             setUpCanvas();
         })();
