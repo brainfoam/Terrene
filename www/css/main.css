@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #f6f6f6;
+    background-color: #fafafa;
 }
 
 div { 
@@ -32,8 +32,7 @@ a, a:visited, a:hover, a:active{
 #app_page_header {
     color: white;
     height: 145px;
-    
-    /* background-image: url(../images/home/header_image.jpg); */
+    background-color: #171733;
     background-size: 100%;
     box-shadow: 0px 0px 20px white;
     position: fixed;
@@ -43,32 +42,6 @@ a, a:visited, a:hover, a:active{
     z-index: 999;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-}
-
-/* Header Colors */
-.blue_header {
-    background: rgb(116,0,245);
-    background: linear-gradient(0deg, rgba(116,0,245,1) 0%, rgba(201,150,255,1) 100%);
-}
-
-.light_blue_header {
-    background: rgb(0,116,245);
-    background: linear-gradient(0deg, rgba(0,116,245,1) 0%, rgba(150,196,255,1) 100%);
-}
-
-.red_header {
-    background: rgb(255,178,150);
-    background: linear-gradient(0deg, rgba(255,178,150,1) 0%, rgba(255,160,160,1) 100%);
-}
-
-.green_header {
-    background: rgb(0,245,199);
-    background: linear-gradient(0deg, rgba(0,245,199,1) 0%, rgba(150,255,165,1) 100%);
-}
-
-.orange_header {
-    background: rgb(255,209,160);
-    background: linear-gradient(0deg, rgba(255,209,160,1) 0%, rgba(255,232,150,1) 100%);
 }
 
 #app_page_header_h1 {
@@ -90,18 +63,21 @@ a, a:visited, a:hover, a:active{
 }
 
 .app_panel_fit {
-    margin: 15px;
+    margin: 20px;
     font-size: 1.25em;
-    padding: 27px;
-    border-radius: 15px;
-    min-height: 32px;
+    padding: 18px;
+    border-radius: 20px;
+    min-height: 26px;
     font-weight: bold;
     background-color: white;
-    box-shadow: -3px 3px 5px rgba(0,0,0,.1);
+    text-align: center;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.01);
+    border: 2px solid #eeeeee;
 }
 
 .app_panel_fit a {
-    color: black;
+    color: #666666;
+    text-shadow: 0px 3px 5px rgba(0,0,0,.07);
 }
 
 .panel1 {

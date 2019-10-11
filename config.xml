@@ -2,10 +2,10 @@
 <widget id="com.phonegap.terrene" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Terrene</name>
     <description>
-        A blank PhoneGap app.
+        A wellness app to help people with back pain.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="support@terrene.com" href="http://terrene.com">
+        Terrene Team
     </author>
     <content src="index.html" />
     <access origin="*" />
