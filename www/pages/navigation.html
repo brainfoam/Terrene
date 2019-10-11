@@ -2,25 +2,25 @@
     <div id="app_navbar_container">
         <ul id="app_navbar">
             <a class="nav_link">
-                <li id="nav_home" class="nav_item"> 
+                <li id="nav_home" class="nav_item nav_selected"> 
                     <img class="nav_icon" src="images/icons/home.svg"></img>
                     <label class="nav_name">Home</label>
                 </li>
             </a>
             <a class="nav_link">
-                <li id="nav_game" class="nav_item">
+                <li id="nav_game" class="nav_item nav_deselected">
                     <img class="nav_icon" src="images/icons/world.svg"></img>
                     <label class="nav_name">Game</label>
                 </li>
             </a>
             <a class="nav_link">
-                <li id="nav_health" class="nav_item">
+                <li id="nav_health" class="nav_item nav_deselected">
                     <img class="nav_icon" src="images/icons/heart.svg"></img>
                     <label class="nav_name">Health</label>
                 </li>
             </a>
             <a class="nav_link">
-                <li id="nav_tracking" class="nav_item">
+                <li id="nav_tracking" class="nav_item nav_deselected">
                     <img class="nav_icon" src="images/icons/tracking.svg"></img>
                     <label class="nav_name">Stats</label>
                 </li>
@@ -33,17 +33,26 @@
         </a>
     </div>
     <script>
-        let nav_home = $("#nav_home");
-        let nav_game = $("#nav_game");
-        let nav_hlth = $("#nav_health");
-        let nav_trck = $("#nav_tracking");
-        let nav_emer = $("#nav_emergency_button");
 
-        nav_home.click(function() { loadPage("home");          });
-        nav_game.click(function() { loadPage("game");          });
-        nav_hlth.click(function() { loadPage("health");        });
-        nav_trck.click(function() { loadPage("tracking");      });
-        nav_emer.click(function() { loadPage("external_care"); });
+        let name_home     = "home";
+        let name_game     = "game";
+        let name_health   = "health";
+        let name_tracking = "tracking";
+        let name_external = "external_care";
+
+        let nav_home    = $("#nav_home");
+        let nav_game    = $("#nav_game");
+        let nav_hlth    = $("#nav_health");
+        let nav_trck    = $("#nav_tracking");
+        let nav_emer    = $("#nav_emergency_button");
+        let current_nav = nav_home;
+        let nav_effect  = "bounceIn";
+
+        nav_home.click(function() { loadPage(name_home);     });
+        nav_game.click(function() { loadPage(name_game);     });
+        nav_hlth.click(function() { loadPage(name_health);   });
+        nav_trck.click(function() { loadPage(name_tracking); });
+        nav_emer.click(function() { loadPage(name_external); });
 
         function clearAppBody() {
             document.querySelector("#app_body").innerHTML = "";
@@ -52,6 +61,34 @@
         function loadPage(pageName) {
             clearAppBody();
             $("#app_body").load("pages/" + pageName + ".html");
+            navSelect(current_nav, false);
+            current_nav = getNavItemFromName(pageName);
+            navSelect(current_nav);
+        }
+
+        function getNavItemFromName(name) {
+            switch(name) {
+                case name_home:     return nav_home;
+                case name_game:     return nav_game;
+                case name_health:   return nav_hlth;
+                case name_tracking: return nav_trck;
+                case name_external: return nav_emer;
+            }
+        }
+
+        function navSelect(item, select = true) {
+            if(select) {
+                item.removeClass("nav_deselected");
+                item.addClass("nav_selected");
+                item.addClass("animated");
+                item.addClass(nav_effect);
+            }
+            else if(item != nav_emer) {
+                item.removeClass("nav_selected");
+                item.addClass("nav_deselected");
+                item.removeClass("animated");
+                item.removeClass(nav_effect);
+            }
         }
 
         app_log('Navigation injected.', C_LOAD);
