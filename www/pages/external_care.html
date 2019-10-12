@@ -5,8 +5,9 @@
             External Care
         </div>
     </div>
-    <div class="app_panel_fit panel1 animated fadeInRight">
-        <a href="...">
+
+    <div id="ec_physical_therapy" class="app_panel_fit panel1 animated fadeInRight">
+        <a>
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
                 Physical Therapy
@@ -14,7 +15,7 @@
         </a>
     </div>
     <div class="app_panel_fit panel1 animated fadeInLeft">
-        <a href="...">
+        <a>
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
                 Chiropractor
@@ -22,7 +23,7 @@
         </a>
     </div>
     <div class="app_panel_fit panel1 animated fadeInRight">
-        <a href="...">
+        <a>
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
                 Primary Care
@@ -30,7 +31,7 @@
         </a>
     </div>
     <div class="app_panel_fit panel1 animated fadeInLeft">
-        <a href="...">
+        <a>
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
                 Urgent Care
@@ -38,7 +39,7 @@
         </a>
     </div>
     <div class="app_panel_fit panel1 animated fadeInRight">
-        <a href="...">
+        <a>
             <span class="hyperspan"></span>
             <h1 class="animated fadeIn delay-1s">
                 Emergency Care
@@ -46,6 +47,13 @@
         </a>
     </div>
     <script>
-        console.log('%c 👉 External care page injected.', C_LOAD);
+
+        (APP_ecinit = function(){
+            let folder_name = "external_care";
+            $("#ec_physical_therapy").click(function() { loadPage(folder_name + "/physical_therapy"); });
+        })();
+
+        app_log('External Care page injected.', C_LOAD);
+
     </script>
 </html>

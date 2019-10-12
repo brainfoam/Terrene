@@ -51,6 +51,7 @@
     </div>
     
     <script>
+        
         (APP_homeinit = function(){
 
             var GL_CANVAS_H   = 35;
@@ -80,7 +81,6 @@
 
             function drawLevelBar() {
                 timer++;
-
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 let level_bar_wait_time     = 20;
@@ -153,6 +153,8 @@
             }
             setUpCanvas();
         })();
+
         app_log('Home page injected.', C_LOAD);
+
     </script>
 </html>

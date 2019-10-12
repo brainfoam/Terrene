@@ -1,5 +1,5 @@
 #app_navbar {
-    height: 50px;
+    height: 55px;
     z-index: 999;
     position: fixed !important;
     bottom: 0px !important;
@@ -48,7 +48,7 @@
 }
 
 #nav_emergency_button {
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: 800;
     max-width: 1px;
     text-align: center;
@@ -62,6 +62,7 @@
     border-radius: 50%;
     color: white;
     padding: 5px;
+    padding-top: 7px;
     box-shadow: -2px 2px 10px rgba(0,0,0,.1);
 }
 

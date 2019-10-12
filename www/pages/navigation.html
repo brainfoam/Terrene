@@ -28,7 +28,7 @@
         </ul>
         <a class="nav_link">
             <div id="nav_emergency_button" class="nav_item animated fadeInUp delay-1s">
-            !
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
         </a>
     </div>
@@ -39,28 +39,22 @@
         let name_health   = "health";
         let name_tracking = "tracking";
         let name_external = "external_care";
+        let nav_home      = $("#nav_home");
+        let nav_game      = $("#nav_game");
+        let nav_hlth      = $("#nav_health");
+        let nav_trck      = $("#nav_tracking");
+        let nav_emer      = $("#nav_emergency_button");
+        let current_nav   = nav_home;
+        let nav_effect    = "bounceIn";
 
-        let nav_home    = $("#nav_home");
-        let nav_game    = $("#nav_game");
-        let nav_hlth    = $("#nav_health");
-        let nav_trck    = $("#nav_tracking");
-        let nav_emer    = $("#nav_emergency_button");
-        let current_nav = nav_home;
-        let nav_effect  = "bounceIn";
+        nav_home.click(function() { switchNav(name_home);     });
+        nav_game.click(function() { switchNav(name_game);     });
+        nav_hlth.click(function() { switchNav(name_health);   });
+        nav_trck.click(function() { switchNav(name_tracking); });
+        nav_emer.click(function() { switchNav(name_external); });
 
-        nav_home.click(function() { loadPage(name_home);     });
-        nav_game.click(function() { loadPage(name_game);     });
-        nav_hlth.click(function() { loadPage(name_health);   });
-        nav_trck.click(function() { loadPage(name_tracking); });
-        nav_emer.click(function() { loadPage(name_external); });
-
-        function clearAppBody() {
-            document.querySelector("#app_body").innerHTML = "";
-        }
-
-        function loadPage(pageName) {
-            clearAppBody();
-            $("#app_body").load("pages/" + pageName + ".html");
+        function switchNav(pageName) {
+            loadPage(pageName);
             navSelect(current_nav, false);
             current_nav = getNavItemFromName(pageName);
             navSelect(current_nav);
@@ -80,17 +74,22 @@
             if(select) {
                 item.removeClass("nav_deselected");
                 item.addClass("nav_selected");
-                item.addClass("animated");
-                item.addClass(nav_effect);
+                if(item == nav_emer)
+                {
+                    item.removeClass("fadeInUp");
+                    item.removeClass("delay-1s");
+                }
+                animate(item, nav_effect);
             }
-            else if(item != nav_emer) {
+            else {
                 item.removeClass("nav_selected");
-                item.addClass("nav_deselected");
-                item.removeClass("animated");
-                item.removeClass(nav_effect);
+                if(item != nav_emer)
+                    item.addClass("nav_deselected");
+                removeAnimation(item, nav_effect);
             }
         }
 
         app_log('Navigation injected.', C_LOAD);
+
     </script>
 </html>
