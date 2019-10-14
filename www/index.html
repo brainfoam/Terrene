@@ -33,6 +33,7 @@
         <div id="navigation_insert"></div>
 
         <!-- Scripts & External Resources -->
+        <script src="packages/pixi.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="scripts/utilities.js"></script>
         
@@ -59,7 +60,9 @@
 
             //Load app body & navigation injection through JQuery
             $(function(){
-                $("#app_body").load("pages/home.html");
+                //Experimental
+                $("#app_body").load("pages/home_interactive.html");
+                //$("#app_body").load("pages/home.html"); <-- Basic
                 $("#navigation_insert").load("pages/navigation.html");
             });
 
