@@ -6,69 +6,52 @@
         }
     </style>
     <script type="text/javascript">
+        "use strict";
 
         (function() {
 
-            //---------------------------------------------------
-            //Home canvas variables
-            let APP, APP_TYPE, APP_STAGE, APP_RENDERER
-            let APP_ID       = "interactive_home_canvas";
-            let APP_B_MARGIN = 45;
-            let APP_WIDTH    = window.innerWidth;
-            let APP_HEIGHT   = window.innerHeight - APP_B_MARGIN;
-            //---------------------------------------------------
-
-            //Sets up the PIXI JS canvas for the home menu.
-            function setUpHomeCanvas() {
-                
-                //Welcome Message
-                PIXI.utils.sayHello(APP_TYPE);
-
-                //Set App Type
-                APP_TYPE = (!PIXI.utils.isWebGLSupported()) ? "canvas" : "WebGL";
-
-                //Add event listener for reactive resizing
-                window.addEventListener("resize", function() {
-                    APP.renderer.resize(APP_WIDTH, APP_HEIGHT);
-                });
-
-                //Set up app element
-                APP_STAGE = new PIXI.Container();
-                APP = new PIXI.Application(APP_WIDTH, APP_HEIGHT);
-                APP.view.id = APP_ID;
-                APP.view.setAttribute("scroll", "no");
-                APP.view.classList.add("animated");
-                APP.view.classList.add("fadeIn");
-                APP_RENDERER = PIXI.renderer;
-
-                //Load assets
-                preload();
-                
-                //Add update ticker
-                APP.ticker.add(update);
-
-                //Append app element to body
-                $("#app_body").append(APP.view);
-            }
-
-            function preload() {
-
-            }
-
-            //Update the PIXI canvas at 60/fps.
-            function update(dt) {
-                updateCanvasSize();
-
-            }
-
-            //Update the canvas size.
-            function updateCanvasSize() {
-                APP_WIDTH = window.innerWidth;
-                APP_HEIGHT = window.innerHeight - APP_B_MARGIN;
-            }
-
-            setUpHomeCanvas();
+            //------------------------------------------------------------
+            //Canvas pre-load behaviour
+            let window_width  = window.innerWidth;
+            let window_height = window.innerHeight;
+            let app_field, app_scene;
+            let app_fade_rate = .02;
+            const app = new PIXI.Application(window_width, window_height, {
+                backgroundColor: 0x171733
+            });
             
+            $("#app_body").append(app.view);
+            
+            //Load canvas assets
+            PIXI.loader.add([
+                "assets/home/home_planet_01.png"
+            ]).load(start);
+            //------------------------------------------------------------
+
+            //Start (setup) function
+            function start() {
+                app_field = app.stage;
+                app_scene = new PIXI.Container();
+                app_field.addChild(app_scene);
+                app.view.id = "interactive_home_canvas";
+                app.view.setAttribute("scroll", "no");
+                app_scene.alpha = 0.0;
+
+                let planet_01 = new PIXI.Sprite.from("assets/home/home_planet_01.png");
+
+                app_scene.addChild(planet_01);
+
+                app.ticker.add(update);
+            }
+
+            //Update function
+            function update() {
+                if(app_scene.alpha < 1.0) {
+                    app_scene.alpha += app_fade_rate;
+                }
+
+            }
+
         })();
     
         app_log('Interactive Home page injected.', C_LOAD);
