@@ -11,7 +11,7 @@
 
             //---------------------------------------------------
             //Home canvas variables
-            let APP, APP_TYPE;
+            let APP, APP_TYPE, APP_STAGE, APP_RENDERER
             let APP_ID       = "interactive_home_canvas";
             let APP_B_MARGIN = 45;
             let APP_WIDTH    = window.innerWidth;
@@ -20,11 +20,12 @@
 
             //Sets up the PIXI JS canvas for the home menu.
             function setUpHomeCanvas() {
-                //Set App Type
-                APP_TYPE = (!PIXI.utils.isWebGLSupported()) ? "canvas" : "WebGL";
-
+                
                 //Welcome Message
                 PIXI.utils.sayHello(APP_TYPE);
+
+                //Set App Type
+                APP_TYPE = (!PIXI.utils.isWebGLSupported()) ? "canvas" : "WebGL";
 
                 //Add event listener for reactive resizing
                 window.addEventListener("resize", function() {
@@ -32,10 +33,17 @@
                 });
 
                 //Set up app element
+                APP_STAGE = new PIXI.Container();
                 APP = new PIXI.Application(APP_WIDTH, APP_HEIGHT);
                 APP.view.id = APP_ID;
                 APP.view.setAttribute("scroll", "no");
+                APP.view.classList.add("animated");
+                APP.view.classList.add("fadeIn");
+                APP_RENDERER = PIXI.renderer;
 
+                //Load assets
+                preload();
+                
                 //Add update ticker
                 APP.ticker.add(update);
 
@@ -43,9 +51,14 @@
                 $("#app_body").append(APP.view);
             }
 
+            function preload() {
+
+            }
+
             //Update the PIXI canvas at 60/fps.
             function update(dt) {
                 updateCanvasSize();
+
             }
 
             //Update the canvas size.
