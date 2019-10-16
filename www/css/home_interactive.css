@@ -1,3 +1,5 @@
 #interactive_home_canvas {
-    overflow: hidden;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0%;
 }
