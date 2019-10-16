@@ -6,7 +6,6 @@
         }
     </style>
     <script type="text/javascript">
-        "use strict";
 
         (function() {
 
@@ -14,42 +13,81 @@
             //Canvas pre-load behaviour
             let window_width  = window.innerWidth;
             let window_height = window.innerHeight;
-            let app_field, app_scene;
+            let app_field, app_scene, app_time;
             let app_fade_rate = .02;
             const app = new PIXI.Application(window_width, window_height, {
-                backgroundColor: 0x171733
+                backgroundColor: 0x171733,
+                antialias: true
             });
             
             $("#app_body").append(app.view);
-            
+
+            let asset_path = "assets/home/";
+
             //Load canvas assets
             PIXI.loader.add([
-                "assets/home/home_planet_01.png"
+                asset_path + "planet_01.png",
+                asset_path + "planet_02.png",
+                asset_path + "planet_03.png",
+                asset_path + "planet_glow.png"
             ]).load(start);
             //------------------------------------------------------------
 
+            //------------------------------------------------------------
+            //Asset variables
+            let planet_01, planet_02, planet_03, planet_04;
+            let planet_01_glow;
+            //------------------------------------------------------------
+
+            //Load assets function
+            function load() {
+                planet_01_glow = PIXI_makeSprite(asset_path + "planet_glow.png", app_scene);
+                planet_01 = PIXI_makeSprite(asset_path + "planet_01.png", app_scene);
+                setUp();
+            }
+
+            function setUp() {
+                //planet 01
+                planet_01.width  = 400;
+                planet_01.height = 400;
+                planet_01.x      = app.view.width / 2;
+                planet_01.y      = app.view.height - 100;
+                planet_01.zIndex = 2;
+
+                //planet 01 glow
+                planet_01_glow.x      = planet_01.x;
+                planet_01_glow.y      = planet_01.y;
+                planet_01_glow.width  = 800;
+                planet_01_glow.height = 800;
+                planet_01_glow.alpha  = .35;
+            }
+
             //Start (setup) function
             function start() {
+                app_time = 0;
                 app_field = app.stage;
                 app_scene = new PIXI.Container();
                 app_field.addChild(app_scene);
                 app.view.id = "interactive_home_canvas";
                 app.view.setAttribute("scroll", "no");
-                app_scene.alpha = 0.0;
-
-                let planet_01 = new PIXI.Sprite.from("assets/home/home_planet_01.png");
-
-                app_scene.addChild(planet_01);
-
+                load(); 
                 app.ticker.add(update);
             }
 
             //Update function
-            function update() {
-                if(app_scene.alpha < 1.0) {
-                    app_scene.alpha += app_fade_rate;
-                }
+            function update(dt) {
+                app_time += dt;
 
+                //planet 01
+                planet_01.rotation += .0003;
+
+                //planet 01 glow
+                let glow_freq = .05;
+                let glow_amp  = 2.3;
+                let glow_diff = Math.sin(app_time * glow_freq) * glow_amp;
+                planet_01_glow.height += glow_diff;
+                planet_01_glow.width  += glow_diff;
+                planet_01_glow.alpha = .35 + Math.sin(app_time * glow_freq) * .1;
             }
 
         })();
