@@ -40,7 +40,9 @@
                 asset_path + "planet_03.png",
                 asset_path + "planet_04.png",
                 asset_path + "planet_glow.png",
-                asset_path + "planet_rim.png"
+                asset_path + "planet_rim.png",
+                asset_path + "planet_blackout.png",
+                asset_path + "background.png"
             ]).load(start);
             //------------------------------------------------------------
 
@@ -55,75 +57,121 @@
                 planet_03_rim,
                 planet_04_rim,
                 planet_01_glow;
+
+            //Text
+            let planet_01_text,
+                planet_02_text,
+                planet_03_text,
+                planet_04_text;
+
+            //Settings
+            let text_h1 = {
+                fontFamily: 'Arial Black',
+                fontSize: 20,
+                fill: 0xFFFFFF,
+                stroke: 0x000000,
+                strokeThickness: 2
+            };
+            //------------------------------------------------------------
+
+            //------------------------------------------------------------
+            //Object variables
+            let background       = undefined;
+            let planets          = [];
+            let planet_bases     = [];
+            let planet_rims      = [];
+            let planet_text      = [];
+            let planet_glows     = [];
+            let planet_blackouts = [];
             //------------------------------------------------------------
 
             //Load assets function
             function load() {
+                //background
+                background = PIXI_makeSprite(asset_path + "background.png", app_scene);
+                background.anchor.set(0, 1);
+
                 //glows
-                planet_01_glow = PIXI_makeSprite(asset_path + "planet_glow.png", app_scene);
+                let p = 0;
+                planet_glows[p] = PIXI_makeSprite(asset_path + "planet_glow.png", app_scene);
+
+                //blackouts -> you HAVE to unroll these "loops," or else you get XML parse errors
+                p = 0;
+                planet_blackouts[p++] = PIXI_makeSprite(asset_path + "planet_blackout.png", app_scene);
+                planet_blackouts[p++] = PIXI_makeSprite(asset_path + "planet_blackout.png", app_scene);
+                planet_blackouts[p++] = PIXI_makeSprite(asset_path + "planet_blackout.png", app_scene);
+                planet_blackouts[p++] = PIXI_makeSprite(asset_path + "planet_blackout.png", app_scene);
 
                 //planets
-                planet_01 = PIXI_makeSprite(asset_path + "planet_01.png", app_scene);
-                planet_02 = PIXI_makeSprite(asset_path + "planet_02.png", app_scene);
-                planet_03 = PIXI_makeSprite(asset_path + "planet_03.png", app_scene);
-                planet_04 = PIXI_makeSprite(asset_path + "planet_04.png", app_scene);
+                p = 0;
+                planets[p++] = PIXI_makeSprite(asset_path + "planet_01.png", app_scene);
+                planets[p++] = PIXI_makeSprite(asset_path + "planet_02.png", app_scene);
+                planets[p++] = PIXI_makeSprite(asset_path + "planet_03.png", app_scene);
+                planets[p++] = PIXI_makeSprite(asset_path + "planet_04.png", app_scene);
 
-                //rims
-                planet_01_rim = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
-                planet_02_rim = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
-                planet_03_rim = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
-                planet_04_rim = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
+                //rims -> I know it hurts but you have to do it
+                p = 0;
+                planet_rims[p++] = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
+                planet_rims[p++] = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
+                planet_rims[p++] = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
+                planet_rims[p++] = PIXI_makeSprite(asset_path + "planet_rim.png", app_scene);
+
+                //text
+                p = 0;
+                planet_text[p++] = PIXI_makeText("Self-Care", text_h1, app_scene);
+                planet_text[p++] = PIXI_makeText("Tereen HQ", text_h1, app_scene);
+                planet_text[p++] = PIXI_makeText("Library", text_h1, app_scene);
+                planet_text[p++] = PIXI_makeText("Alternative Care", text_h1, app_scene);
 
                 setUp();
             }
 
+            //------------------------------------------------------------
+            //Update variables   
+            const planet_alphas = [1, .8, .8, .3];
+            //------------------------------------------------------------
+
+            //Setup function
             function setUp() {
                 //refernece variables
-                let planet_margin_factor = 7;
-                let mid_planet_y_factor = 2.5;
+                let planet_margin_factor  = 7;
+                let mid_planet_y_factor   = 2.5;
+                let mid_planet_x_text_off = 10;
 
-                //planet 01
-                planet_01.width  = 400;
-                planet_01.height = 400;
-                planet_01.x      = window_width / 2;
-                planet_01.y      = window_height - 100;
+                //background
+                PIXI_setAttributes(background, 0, window_height, window_width, window_height);
 
-                //planet 02
-                planet_02.width  = 160;
-                planet_02.height = 160;
-                planet_02.x      = window_width / planet_margin_factor;
-                planet_02.y      = window_height / mid_planet_y_factor;
-                planet_02.alpha  = .8;
-                planet_02.rotation = 1;
+                //planets
+                let p = 0;
+                PIXI_setAttributes(planets[p], window_width / 2,                                     window_height - 100,                 400, 400, planet_alphas[p++], 1);
+                PIXI_setAttributes(planets[p], window_width / planet_margin_factor,                  window_height / mid_planet_y_factor, 160, 160, planet_alphas[p++], 1);
+                PIXI_setAttributes(planets[p], window_width - (window_width / planet_margin_factor), window_height / mid_planet_y_factor, 160, 160, planet_alphas[p++], 3);
+                PIXI_setAttributes(planets[p], window_width / 2,                                     100,                                 100, 100, planet_alphas[p++], 5);
 
-                //planet 03
-                planet_03.width  = 160;
-                planet_03.height = 160;
-                planet_03.x      = window_width - (window_width / planet_margin_factor);
-                planet_03.y      = window_height / mid_planet_y_factor;
-                planet_03.alpha  = .8;
-                planet_03.rotation = 3;
+                //glow
+                p = 0;
+                PIXI_setAttributes(planet_glows[p], planets[p].x, planets[p].y, 800, 800, .35);
 
-                //planet 04
-                planet_04.width  = 100;
-                planet_04.height = 100;
-                planet_04.x      = window_width / 2;
-                planet_04.y      = 100;
-                planet_04.alpha  = .3;
-                planet_04.rotation = 5;
+                //rims -> copy scales from planet bases
+                p = 0;
+                PIXI_copyTransform(planets[p], planet_rims[p++]);
+                PIXI_copyTransform(planets[p], planet_rims[p++]);
+                PIXI_copyTransform(planets[p], planet_rims[p++]);
+                PIXI_copyTransform(planets[p], planet_rims[p++]);
+ 
+                //blackouts -> copy scales from planet bases
+                p = 0;
+                PIXI_copyTransform(planets[p], planet_blackouts[p++]);
+                PIXI_copyTransform(planets[p], planet_blackouts[p++]);
+                PIXI_copyTransform(planets[p], planet_blackouts[p++]);
+                PIXI_copyTransform(planets[p], planet_blackouts[p++]);
 
-                //planet 01 glow
-                planet_01_glow.x      = planet_01.x;
-                planet_01_glow.y      = planet_01.y;
-                planet_01_glow.width  = 800;
-                planet_01_glow.height = 800;
-                planet_01_glow.alpha  = .35;
-
-                //rim 01
-                PIXI_copyTransform(planet_01, planet_01_rim);
-                PIXI_copyTransform(planet_02, planet_02_rim);
-                PIXI_copyTransform(planet_03, planet_03_rim);
-                PIXI_copyTransform(planet_04, planet_04_rim);
+                //text
+                p = 0;
+                PIXI_translate(planet_text[p], planets[p].x,                         planets[p++].y - 120);
+                PIXI_translate(planet_text[p], planets[p].x + mid_planet_x_text_off, planets[p++].y - 10 );
+                PIXI_translate(planet_text[p], planets[p].x - mid_planet_x_text_off, planets[p++].y - 10 );
+                PIXI_translate(planet_text[p], planets[p].x,                         planets[p++].y - 5  );
             }
 
             //Start (setup) function
@@ -134,27 +182,61 @@
                 app_field.addChild(app_scene);
                 app.view.id = "interactive_home_canvas";
                 app.view.setAttribute("scroll", "no");
-                load(); 
+                load();
+                planet_bases = planets;
                 app.ticker.add(update);
             }
+
+            //------------------------------------------------------------
+            //Update variables
+            let p1_rotation_rate_curr = .1; //-> planet 1 rotation
+            let p1_rotation_rate_goal = .0003;
+            let p1_rotation_rate_lerp = .03;
+            let master_opacity_curr   = 0; //-> master opacity
+            let master_opacity_goal   = 1;
+            let master_opacity_lerp   = .02;
+            let master_opacity_wait   = 60;
+            let master_scale_curr     = .2; //-> master scale
+            let master_scale_goal     = 1;
+            let master_scale_lerp     = .003;
+            let master_scale_wait     = 60;
+            //------------------------------------------------------------
 
             //Update function
             function update(dt) {
                 app_time += dt;
 
-                //rotations
-                planet_01.rotation += .0003;
-                planet_02.rotation += .0004;
-                planet_03.rotation += .0002;
-                planet_04.rotation += .0005;
+                //lerping
+                p1_rotation_rate_curr = lerp(p1_rotation_rate_curr, p1_rotation_rate_goal, p1_rotation_rate_lerp);
 
+                if(app_time > master_opacity_wait) //opacity
+                    master_opacity_curr = lerp(master_opacity_curr, master_opacity_goal, master_opacity_lerp);
+
+                if(app_time > master_scale_wait) //scale
+                    master_scale_curr = lerp(master_scale_curr, master_scale_goal, master_scale_lerp);
+
+                //rotations
+                let p = 0;
+                planets[p++].rotation += p1_rotation_rate_curr;
+                planets[p++].rotation += .0004;
+                planets[p++].rotation += .0002;
+                planets[p++].rotation += .0005;
+
+                //opacity
+                p = 0;
+                planets[p].alpha = planet_alphas[p++] * master_opacity_curr;
+                planets[p].alpha = planet_alphas[p++] * master_opacity_curr;
+                planets[p].alpha = planet_alphas[p++] * master_opacity_curr;
+                planets[p].alpha = planet_alphas[p++] * master_opacity_curr;
+                
                 //glows
+                p = 0;
                 let glow_freq = .025;
                 let glow_amp  = 1.15;
                 let glow_diff = Math.sin(app_time * glow_freq) * glow_amp;
-                planet_01_glow.height += glow_diff;
-                planet_01_glow.width  += glow_diff;
-                planet_01_glow.alpha = .35 + Math.sin(app_time * glow_freq) * .1;
+                planet_glows[p].height += glow_diff;
+                planet_glows[p].width  += glow_diff;
+                planet_glows[p].alpha   = .35 + Math.sin(app_time * glow_freq) * .1;
             }
 
         })();
