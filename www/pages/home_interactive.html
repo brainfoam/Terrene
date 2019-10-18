@@ -18,6 +18,9 @@
             PIXI.settings.FILTER_RESOLUTION = 2;
             PIXI.settings.RESOLUTION = 2;
 
+            const loader = new PIXI.loaders.Loader();
+            loader.add('Rubik', 'assets/fonts/Rubik/Rubik-Light.ttf');
+
             //------------------------------------------------------------
             //Canvas pre-load behaviour
             let window_width  = window.innerWidth;
@@ -66,7 +69,23 @@
 
             //Settings
             let text_h1 = {
-                fontFamily: 'Arial Black',
+                fontFamily: 'Rubik',
+                fontSize: 35,
+                fill: 0xFFFFFF,
+                stroke: 0x000000,
+                strokeThickness: 2
+            };
+
+            let text_h2 = {
+                fontFamily: 'Rubik',
+                fontSize: 23,
+                fill: 0xFFFFFF,
+                stroke: 0x000000,
+                strokeThickness: 2
+            };
+
+            let text_h3 = {
+                fontFamily: 'Rubik',
                 fontSize: 20,
                 fill: 0xFFFFFF,
                 stroke: 0x000000,
@@ -119,9 +138,9 @@
                 //text
                 p = 0;
                 planet_text[p++] = PIXI_makeText("Self-Care", text_h1, app_scene);
-                planet_text[p++] = PIXI_makeText("Tereen HQ", text_h1, app_scene);
-                planet_text[p++] = PIXI_makeText("Library", text_h1, app_scene);
-                planet_text[p++] = PIXI_makeText("Alternative Care", text_h1, app_scene);
+                planet_text[p++] = PIXI_makeText("Tereen HQ", text_h2, app_scene);
+                planet_text[p++] = PIXI_makeText("Library", text_h2, app_scene);
+                planet_text[p++] = PIXI_makeText("Alternative Care", text_h3, app_scene);
 
                 setUp();
             }
@@ -139,7 +158,9 @@
                 let mid_planet_x_text_off = 10;
 
                 //background
-                PIXI_setAttributes(background, 0, window_height, window_width, window_height);
+                let bg_diff   = background.width / window_width;
+                let bg_height = background.height / bg_diff;
+                PIXI_setAttributes(background, 0, window_height, window_width, bg_height);
 
                 //planets
                 let p = 0;
@@ -189,17 +210,17 @@
 
             //------------------------------------------------------------
             //Update variables
-            let p1_rotation_rate_curr = .1; //-> planet 1 rotation
+            let p1_rotation_rate_curr = .03; //-> planet 1 rotation
             let p1_rotation_rate_goal = .0003;
             let p1_rotation_rate_lerp = .03;
             let master_opacity_curr   = 0; //-> master opacity
             let master_opacity_goal   = 1;
-            let master_opacity_lerp   = .02;
-            let master_opacity_wait   = 60;
+            let master_opacity_lerp   = .01;
+            let master_opacity_wait   = 30;
             let master_scale_curr     = .2; //-> master scale
             let master_scale_goal     = 1;
             let master_scale_lerp     = .003;
-            let master_scale_wait     = 60;
+            let master_scale_wait     = 30;
             //------------------------------------------------------------
 
             //Update function
