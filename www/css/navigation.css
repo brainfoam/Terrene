@@ -8,12 +8,10 @@
     list-style: none;
     display: flex;
     justify-content: space-around;
-    background-color: white;
+    background-color: #f6f6f6;
     text-align: center;
     text-decoration: none;
-    box-shadow: 0px -3px 8px rgba(0,0,0,.06);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    box-shadow: 0px -3px 8px rgba(0,0,0,.1);
 }
 
 #app_navbar a {
@@ -25,8 +23,8 @@
 }
 
 .nav_link {
-    padding: 0px;
-    width: 40px;
+    padding: 7px;
+    width: 30px;
     margin: 0px;
     opacity: 1.0;
 }
@@ -36,11 +34,11 @@
 }
 
 .nav_selected {
-    opacity: .9;
+    opacity: 0.7;
 }
 
 .nav_deselected {
-    opacity: .4;
+    opacity: .3;
 }
 
 .nav_item {

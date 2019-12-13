@@ -3,60 +3,52 @@
         <ul id="app_navbar">
             <a class="nav_link">
                 <li id="nav_home" class="nav_item nav_selected"> 
-                    <img class="nav_icon" src="images/icons/home.svg"></img>
+                    <img class="nav_icon" src="images/icons/ic_home.svg"></img>
                     <label class="nav_name">Home</label>
                 </li>
             </a>
             <a class="nav_link">
-                <li id="nav_game" class="nav_item nav_deselected">
-                    <img class="nav_icon" src="images/icons/world.svg"></img>
-                    <label class="nav_name">Game</label>
+                <li id="nav_wellness" class="nav_item nav_deselected">
+                    <img class="nav_icon" src="images/icons/ic_wellness.svg"></img>
+                    <label class="nav_name">Wellness</label>
                 </li>
             </a>
-
-            <!--
-            Health Page
-            <a class="nav_link">
-                <li id="nav_health" class="nav_item nav_deselected">
-                    <img class="nav_icon" src="images/icons/heart.svg"></img>
-                    <label class="nav_name">Health</label>
-                </li>
-            </a>
-            -->
-            
             <a class="nav_link">
                 <li id="nav_tracking" class="nav_item nav_deselected">
-                    <img class="nav_icon" src="images/icons/tracking.svg"></img>
-                    <label class="nav_name">Stats</label>
+                    <img class="nav_icon" src="images/icons/ic_progress.svg"></img>
+                    <label class="nav_name">Tracking</label>
+                </li>
+            </a>
+            <a class="nav_link">
+                <li id="nav_health" class="nav_item nav_deselected">
+                    <img class="nav_icon" src="images/icons/ic_health.svg"></img>
+                    <label class="nav_name">External Care</label>
                 </li>
             </a>
         </ul>
-        <a class="nav_link">
+        <!-- <a class="nav_link">
             <div id="nav_emergency_button" class="nav_item animated fadeInUp delay-1s">
                 <i class="fas fa-exclamation-triangle"></i>
             </div>
-        </a>
+        </a> -->
     </div>
     <script>
 
         let name_home     = "home";
-        let name_game     = "game";
-        let name_health   = "health";
+        let name_well     = "wellness";
         let name_tracking = "tracking";
-        let name_external = "external_care";
+        let name_health   = "health";
         let nav_home      = $("#nav_home");
-        let nav_game      = $("#nav_game");
-        let nav_hlth      = $("#nav_health");
+        let nav_well      = $("#nav_wellness");
         let nav_trck      = $("#nav_tracking");
-        let nav_emer      = $("#nav_emergency_button");
+        let nav_hlth      = $("#nav_health")
         let current_nav   = nav_home;
         let nav_effect    = "bounceIn";
 
         nav_home.click(function() { switchNav(name_home);     });
-        nav_game.click(function() { switchNav(name_game);     });
-        nav_hlth.click(function() { switchNav(name_health);   });
+        nav_well.click(function() { switchNav(name_well);     });
         nav_trck.click(function() { switchNav(name_tracking); });
-        nav_emer.click(function() { switchNav(name_external); });
+        nav_hlth.click(function() { switchNav(name_health);   });
 
         function switchNav(pageName) {
             loadPage(pageName);
@@ -68,10 +60,9 @@
         function getNavItemFromName(name) {
             switch(name) {
                 case name_home:     return nav_home;
-                case name_game:     return nav_game;
-                case name_health:   return nav_hlth;
+                case name_well:     return nav_well;
                 case name_tracking: return nav_trck;
-                case name_external: return nav_emer;
+                case name_health:   return nav_hlth;
             }
         }
 
@@ -79,17 +70,11 @@
             if(select) {
                 item.removeClass("nav_deselected");
                 item.addClass("nav_selected");
-                if(item == nav_emer)
-                {
-                    item.removeClass("fadeInUp");
-                    item.removeClass("delay-1s");
-                }
                 animate(item, nav_effect);
             }
             else {
                 item.removeClass("nav_selected");
-                if(item != nav_emer)
-                    item.addClass("nav_deselected");
+                item.addClass("nav_deselected");
                 removeAnimation(item, nav_effect);
             }
         }
